@@ -1,0 +1,10 @@
+
+<div *ngIf="!logstatus">
+  <button class="btn btn-primary" (click)="login()">login</button>&nbsp;&nbsp;
+  <button class="btn btn-primary" (click)="signup()">signup</button>
+</div>
+<div *ngIf="logstatus">
+    <button class="btn btn-success" (click)="logout()">logout</button>
+</div>
+
+<router-outlet></router-outlet>

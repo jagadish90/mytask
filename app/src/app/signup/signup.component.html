@@ -1,0 +1,111 @@
+
+
+<form #signup='ngForm' >
+
+
+    <label>username:</label>
+    <input id="username" name="username" class="form-control"
+          required minlength="4" [ngClass]="{'is-invalid':signup.submitted && username.invalid}"
+          [(ngModel)]="hero.username" #username="ngModel" >
+    
+    <div *ngIf="username.invalid && (username.dirty || username.touched)"
+       >
+    
+      <div *ngIf="username.errors.required">
+        <span>username is required.</span>
+      </div>
+      <div *ngIf="username.errors.minlength">
+    <span>    username must be at least 4 characters long.</span>
+      </div>
+     
+    
+    </div>
+
+<label>Name:</label>
+<input id="name" name="name" class="form-control"
+      required minlength="4" [ngClass]="{'is-invalid':signup.submitted && name.invalid}"
+      [(ngModel)]="hero.name" #name="ngModel" >
+
+<div *ngIf="name.invalid && (name.dirty || name.touched)"
+  >
+
+  <div *ngIf="name.errors.required">
+<span>    Name is required.</span>
+  </div>
+  <div *ngIf="name.errors.minlength">
+<span>    Name must be at least 4 characters long.</span>
+  </div>
+ 
+
+</div>
+
+
+
+<label>Email:</label>
+<input type="text" #email="ngModel" maxlength="100"  [(ngModel)]="hero.email" 
+name="email" class="form-control" required pattern="[a-zA-Z0-9!#$%&.'*+-/=?^_`{|}~]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+ required  [ngClass]="{'is-invalid':signup.submitted && email.invalid}"/>
+
+<div *ngIf="email.invalid && (email.dirty || email.touched)"
+    >
+
+  <div *ngIf="email.errors.required">
+<span>    Email is required.</span>
+  </div>
+  <div [hidden]="!email.errors.pattern"><span>please enter valid email</span></div>
+ 
+
+</div>
+
+
+<label>Usertype</label>
+<select [(ngModel)]="hero.usertype" #usertype name="usertype" class="form-control">
+  <option>Admin</option>
+  <option>User</option>
+
+</select>
+
+
+<label>Password</label>
+<input type="password" #password="ngModel" [(ngModel)]="hero.password"  minlength="6"
+maxlength="30" name="password" class="form-control" [ngClass]="{'is-invalid':signup.submitted && password.invalid}"
+required pattern="[^ ~!#/^]*" required />
+<span *ngIf="password.errors && (password.touched || password.dirty)">
+<span data-toggle="popover" [hidden]="!password.errors.required">password required</span>
+<span data-toggle="popover" [hidden]="!password.errors.minlength">min 6 digits</span>
+<span data-toggle="popover" [hidden]="!password.errors.maxlength">max 20 digits</span><br />
+
+</span>
+<div class="invalid-feedback" *ngIf="!(password.errors && (password.touched || password.dirty))">
+<div>please mention password</div>
+</div>
+<label>Confirm Password</label>
+<input class="form-control" type="password" #pwConfirm="ngModel" name="Confirm password"  ngModel required compare="password" />
+<div class="text-danger" *ngIf="pwConfirm.invalid && (pwConfirm.dirty||pwConfirm.touched)">
+<span *ngIf="pwConfirm.errors['required']">you can't leave this empty</span>
+
+</div>
+<span *ngIf='pwConfirm.value!=hero.password && pwConfirm.value !=0 && hero.password !=null'>
+re-entered password do not match
+</span>
+
+
+<label>Mobile:</label>
+<input type="text"   maxlength="15" class="form-control" 
+                #mobile="ngModel" [(ngModel)]="signup.mobile" name="mobile"  pattern="[0-9]*" 
+                required [ngClass]="{'is-invalid':signup.submitted && mobile.invalid}" />
+
+             
+              <span *ngIf="mobile.errors && (mobile.touched || mobile.dirty)">
+                <span data-toggle="popover" [hidden]="!mobile.errors.required">mobile required
+                </span>
+                <span data-toggle="popover" [hidden]="!mobile.errors.pattern">mobile number should be only numbers</span>
+              </span>
+         <label>Address:</label> 
+         <input type="text" maxlength="30" class="form-control" #address="ngModel" [(ngModel)]="signup.address" name="address" >
+
+         <button class="btn btn-success" 
+         (click)="signup.invalid?register():register(signup.value)">Submit</button>
+
+</form>
+        

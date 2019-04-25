@@ -1,0 +1,32 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>
+        Username
+      </th>
+      <th>
+        name
+      </th>
+      <th>
+        email
+      </th>
+      <th>
+        mobile
+      </th>
+      <th>
+
+        address
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let alldetails of alldetails">
+      <td>{{alldetails.username}}</td>
+      <td>{{alldetails.name}}</td>
+      <td>{{alldetails.email}}</td>
+      <td>{{alldetails.mobile}}</td>
+      <td>{{alldetails.address}}</td>
+    </tr>
+  </tbody>
+
+</table>
